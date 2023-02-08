@@ -1,24 +1,9 @@
-rust-version:
-	@echo "Rust command-line utility versions:"
-	rustc --version 			#rust compiler
-	cargo --version 			#rust package manager
-	rustfmt --version			#rust code formatter
-	rustup --version			#rust toolchain manager
-	clippy-driver --version		#rust linter
+TARGET = guess_number
 
-format:
-	cargo fmt --quiet
+all: $(TARGET)
 
-lint:
-	cargo clippy --quiet
+$(TARGET): src/main.rs
+	rustc $<
 
-test:
-	cargo test --quiet
-
-run:
-	cargo run
-
-release:
-	cargo build --release
-
-all: format lint test run
+clean:
+	rm -f $(TARGET)
